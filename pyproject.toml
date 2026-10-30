@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "switchlib"
+dynamic = ["version"]
+description = "Library manager for Nintendo Switch game files (NSP, NSZ, XCI, XCZ): versions, updates, DLC and mods"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["PySide6>=6.5", "cryptography>=41"]
+
+[project.optional-dependencies]
+dev = ["pytest", "pyinstaller"]
+
+[project.scripts]
+switchlib-cli = "switchlib.cli:main"
+
+[project.gui-scripts]
+switchlib = "switchlib.gui.app:main"
+
+[tool.setuptools.dynamic]
+version = {attr = "switchlib.__version__"}
+
+[tool.setuptools.packages.find]
+include = ["switchlib*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
